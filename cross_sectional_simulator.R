@@ -1,10 +1,42 @@
+#################################################
+# Define function: sim_xsection
+#
+# Description: simulates data for
+# cross-sectional research designs with
+# binary treatments and continuous or
+# binary outcomes analyzed via linear 
+# regression models. Useful for power
+# calculations and analyses of the
+# statistical properties of various
+# research designs employed to study
+# the effect of binary treatments.
+#
+# Arguments:
+# n_states: number of total states
+# n_treated: number of "treated" states
+# y_control: mean outcome for control states
+#            or mean probability outcome = 1
+# y_treated: mean outcome for treated states
+#            or mean probability outcome = 1
+# y_sd_control: sd of outcome for control states
+#               used for continuous outcomes
+# y_sd_treated: sd of outcome for treated states
+#               used for continuous outcomes
+# sims: number of simulations
+# cores: number of CPU cores to use for parallel processing
+# response: either "binary" or "continuous"
+#           OLS is always used
+# keep_terms: terms from the model summary to keep
+#             from each simulation
+#################################################
+
 # Load required packages
 library(foreach)
 library(doParallel)
 library(broom)
 
-# Simulate data for binary treatments with outcomes
-# drawn from a binomial or normal distribution
+
+# Define function
 sim_xsection <- function(n_states = 50,
                          n_treated,
                          y_control,
